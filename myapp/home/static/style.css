@@ -7,7 +7,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    border-color: black;
     }
 
     .calculator {
@@ -20,7 +19,7 @@ body {
       }
 
     h1 {
-        color: #81c5f5;
+        color: #000000;
         font-family: "Times New Roman", Times, serif;
         margin-top: 0;
       }
