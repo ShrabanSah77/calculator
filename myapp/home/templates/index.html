@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,23 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Calculator</title>
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename = 'style.css')}}"
-    />
-
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
   <body>
     <div class="calculator">
-      <h1>My first App, Calculator</h1>
+      <h1>Myfirst App (Calculator)</h1>
       <form method="post" action="{% url 'calculator' %}">
         {% csrf_token %}
-        <input type="text" id="result" name="result" value="{{ result }}" />
+        <input
+          type="text"
+          id="result"
+          name="result"
+          value="{{ result }}" readonly
+        />
         <br />
         <button onclick="clearResult()">C</button>
+        <button onclick="appendToResult('%')">%</button>
+        <button onclick="addBracket()">( )</button>
+        <button onclick="backspace()">⌫</button>
+        <br />
         <button onclick="appendToResult('7')">7</button>
         <button onclick="appendToResult('8')">8</button>
         <button onclick="appendToResult('9')">9</button>
+        <button onclick="appendToResult('/')">/</button>
         <br />
         <button onclick="appendToResult('4')">4</button>
         <button onclick="appendToResult('5')">5</button>
@@ -37,30 +44,8 @@
         <button onclick="appendToResult('.')">.</button>
         <button onclick="calculate()">=</button>
         <button onclick="appendToResult('+')">+</button>
-        <button onclick="clearResult()">Clear</button>
-        <button onclick="appendToResult('/')">/</button>
       </form>
     </div>
-
-    <script>
-      // Update JavaScript functions to handle form submission
-      function appendToResult(value) {
-        document.getElementById("result").value += value;
-      }
-
-      function clearResult() {
-        document.getElementById("result").value = "";
-      }
-
-      function calculate() {
-        try {
-          document.getElementById("result").value = eval(
-            document.getElementById("result").value,
-          );
-        } catch (error) {
-          document.getElementById("result").value = "Error";
-        }
-      }
-    </script>
+    <script src="{% static 'script.js' %}"></script>
   </body>
 </html>
