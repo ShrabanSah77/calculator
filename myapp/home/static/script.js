@@ -1,11 +1,31 @@
-// Add numbers and operators to display
+let resultDisplayed = false;
+
 function appendToResult(value) {
-    document.getElementById("result").value += value;
+    let display = document.getElementById('result');
+
+    if (resultDisplayed) {
+        display.value = "";
+        resultDisplayed = false;
+    }
+    display.value += value;
+}
+
+// Calculate the result
+function calculate() {
+    let display = document.getElementById("result");
+
+    try {
+        display.value = eval(display.value);
+        resultDisplayed = true;
+    } catch (error) {
+        display.value = "Error";
+    }
 }
 
 // Clear the display
 function clearResult() {
     document.getElementById("result").value = "";
+    resultDisplayed = false;
 }
 
 // Remove last character
@@ -29,13 +49,3 @@ function addBracket() {
     }
 }
 
-// Calculate the result
-function calculate() {
-    let display = document.getElementById("result");
-
-    try {
-        display.value = eval(display.value);
-    } catch (error) {
-        display.value = "Error";
-    }
-}
